@@ -48,9 +48,20 @@
         $("#buttons-view").append(a);
         }
       }
-    
-        // Grabbing and storing the data-topic property value from the button
-            var bands = $(this).attr("data-band");
+
+        //get input from user. Store input in a variable. create and on click function for the submit buttong to render new items into our array which need to be buttons. 
+        $('#add-gif').on('click', function(event){
+        event.preventDefault();
+        userInput = $('#gif-input').val().trim();
+        console.log(userInput);
+        bands.push(userInput);
+        console.log(bands);
+        renderButtons();
+        })
+        $(document).on('click', ".band", function(){
+ 		var x = $(this).data("name");
+ 		console.log(x);
+
         // Constructing a queryURL using the band name
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             topics +  "&api_key=kqiKKvJG2sEYdrlq3DGOTos6nyNHFnNG&limit=10";
@@ -63,6 +74,10 @@
             .done(function(response) {
              console.log(queryURL);
              console.log(response);
+
+
+
+             
         // storing the data from the AJAX request in the results variable
              var results = response.data; 
         // Looping through each result item
