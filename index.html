@@ -8,15 +8,15 @@
 
 <body>
     
+    <button data-band="Metalica">metalica</button>            
+
     <div id="gifs-appear-here"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
-        
-        //key= kqiKKvJG2sEYdrlq3DGOTos6nyNHFnNG
+         
         //to do-
-
         var topics = ["Ac/Dc", "Metalica", "Elvis Presley", "The Who", "Rush", "Toto", "Twisted Sister", "Culture Club", "Bon Jovi"];
-
         // Adding click event listen listener to all buttons
             $("button").on("click", function() {
         // Grabbing and storing the data-topic property value from the button
@@ -27,48 +27,37 @@
         // Performing an AJAX request with the queryURL
             $.ajax({
              url: queryURL,
-             method: "GET"
+             method: "GET"  
             })
         // After data comes back from the request
             .done(function(response) {
              console.log(queryURL);
              console.log(response);
         // storing the data from the AJAX request in the results variable
-
-
-
+             var results = response.data; 
         // Looping through each result item
-
-
-
+             for (var i = 0; i < results.length; i++) {
         // Creating and storing a div tag
-
-
-
+             var bandDiv = $("<div>");
         // Creating a paragraph tag with the result item's rating
-
-
-
+             var p = $("<p>").text("Rating: " + results[i].rating);  
         // Creating and storing an image tag
-
-
-
+             var bandImage = $("<img>");
         // Setting the src attribute of the image to a property pulled off the result item
-
-
-
+             bandImage.attr("src", results[i].images.fixed_height.url);
         // Appending the paragraph and image tag to the topicDiv
-
-
-
+             bandDiv.append(p);
+             bandDiv.append(bandImage);
         // Prependng the topicDiv to the HTML page in the "#gifs-appear-here" div      
-    
+             $("#gifs-appear-here").prepend(bandDiv);
 
         //to research- 
         //adding buttons to a variable
         //pausing all the gifs
-        //setting 10 limit
+        
         }
-   
-</body >
-</html >
+      });
+    });
+</script>
+</body>
+</html>
