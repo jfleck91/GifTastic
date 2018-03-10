@@ -8,8 +8,6 @@
 
 <body>
     
-    <button data-topic="ac/dc">Ac/Dc</button>
-
     <div id="gifs-appear-here"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -17,20 +15,22 @@
         //key= kqiKKvJG2sEYdrlq3DGOTos6nyNHFnNG
         //to do-
 
+        var topics = ["Ac/Dc", "Metalica", "Elvis Presley", "The Who", "Rush", "Toto", "Twisted Sister", "Culture Club", "Bon Jovi"];
+
         // Adding click event listen listener to all buttons
             $("button").on("click", function() {
         // Grabbing and storing the data-topic property value from the button
-            var topic = $(this).attr("data-band");
+            var bands = $(this).attr("data-band");
         // Constructing a queryURL using the band name
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-            topic +  "&api_key=kqiKKvJG2sEYdrlq3DGOTos6nyNHFnNG&limit=10";
+            topics +  "&api_key=kqiKKvJG2sEYdrlq3DGOTos6nyNHFnNG&limit=10";
         // Performing an AJAX request with the queryURL
             $.ajax({
              url: queryURL,
              method: "GET"
             })
         // After data comes back from the request
-            .then(function(response) {
+            .done(function(response) {
              console.log(queryURL);
              console.log(response);
         // storing the data from the AJAX request in the results variable
