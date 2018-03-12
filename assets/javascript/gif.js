@@ -34,6 +34,7 @@
         // Constructing a queryURL using the band name
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +x+
             "&api_key=kqiKKvJG2sEYdrlq3DGOTos6nyNHFnNG&limit=10";
+            
         // Performing an AJAX request with the queryURL
             $.ajax({
              url: queryURL,method: "GET"})
@@ -52,13 +53,13 @@
 
         // Creating and storing an image tag
              var bandImage = $("<img>");
-             bandImage.attr('src',response.data[i].images.fixed_height_still.url);
- 				bandImage.attr('data-still',response.data[i].images.fixed_height_still.url);
- 			    bandImage.attr('data-animate',response.data[i].images.fixed_height.url);
- 				bandImage.attr('data-state',"still");
- 			 	bandImage.addClass("gif");
- 				bandDiv.append(p);
- 				bandDiv.append(bandImage);
+             bandImage.attr('src',response.data[i].images.fixed_height_still.url.replace(/^http:\/\//i, 'https://'));
+ 			       bandImage.attr('data-still',response.data[i].images.fixed_height_still.url.replace(/^http:\/\//i, 'https://'));
+ 			       bandImage.attr('data-animate',response.data[i].images.fixed_height.url.replace(/^http:\/\//i, 'https://'));
+ 			       bandImage.attr('data-state',"still");
+ 			    	 bandImage.addClass("gif");
+ 			     	 bandDiv.append(p);
+             bandDiv.append(bandImage);
      
         // Prependng the topicDiv to the HTML page in the "#gifs-appear-here" div      
              $("#gifs-appear-here").prepend(bandDiv);
