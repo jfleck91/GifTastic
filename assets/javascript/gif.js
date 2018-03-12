@@ -32,7 +32,7 @@
  		console.log(x);
 
         // Constructing a queryURL using the band name
-            var queryURL = "http://api.giphy.com/v1/gifs/search?q=" +x+
+            var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +x+
             "&api_key=kqiKKvJG2sEYdrlq3DGOTos6nyNHFnNG&limit=10";
         // Performing an AJAX request with the queryURL
             $.ajax({
